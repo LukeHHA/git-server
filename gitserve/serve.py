@@ -1,3 +1,4 @@
+from typing import Any
 from flask import Blueprint
 from src import actions
 
@@ -5,10 +6,9 @@ from src import actions
 
 bp: Blueprint = Blueprint("serve", __name__, url_prefix="/serve")
 
-bp.route("/init_repo", methods=("GET", "POST"))
-
 act: actions.Actions = actions.Actions()
 
 
-def init_repo() -> None:
+@bp.route("/init_repo", methods=("GET", "POST"))
+def init_repo() -> Any:
     act.create_repo("helloWorld")
