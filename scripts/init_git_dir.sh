@@ -16,4 +16,4 @@ sudo chown "$USER_NAME:$USER_NAME" "$TARGET_DIR"
 # Optional: set permissions (read/write/execute for user only)
 sudo chmod 700 "$TARGET_DIR"
 
-echo "Initialized $TARGET_DIR owned by $USER_NAME:$USER_NAME)"
+echo "Initialized $TARGET_DIR owned by $USER_NAME:$USER_NAME"
