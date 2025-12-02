@@ -3,7 +3,7 @@ from pathlib import Path
 import subprocess
 from typing import Any
 
-from error import GitError
+from src.error import GitError
 
 
 class Actions:

@@ -3,7 +3,7 @@ import subprocess
 import time
 from typing import Text
 
-from error import GitError
+from src.error import GitError
 
 
 def get_binary_version(cmd: str, *args: str) -> None | Text:
