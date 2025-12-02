@@ -1,8 +1,10 @@
 import os
-from typing import Any
-
+from typing import Any, Dict, Text
 from flask import Flask
-from src import actions
+
+# internal modules
+from src.actions import Actions
+from src.helper import get_binary_version
 
 
 def create_app(test_config: None = None) -> Flask:
@@ -26,13 +28,19 @@ def create_app(test_config: None = None) -> Flask:
     except OSError:
         pass
 
-    act: actions.Actions = actions.Actions()
+    act: Actions = Actions()
 
     # a simple page that says hello
-    @app.route("/hello")
-    def hello() -> Any:
-        act.create_repo("helloworld")
-        return "it may have worked"
+    @app.route("/")
+    def index() -> Dict:
+        result: Text | None = get_binary_version("git", "-v")
+
+        if result is None:
+            git_status: str = "git was not found on this system"
+        else:
+            git_status: str = result
+
+        return {"status": "running", "git": git_status}
 
     from . import serve
 
