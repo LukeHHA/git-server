@@ -1,6 +1,8 @@
 import os
+from typing import Any
 
 from flask import Flask
+from src import actions
 
 
 def create_app(test_config: None = None) -> Flask:
@@ -24,10 +26,13 @@ def create_app(test_config: None = None) -> Flask:
     except OSError:
         pass
 
+    act: actions.Actions = actions.Actions()
+
     # a simple page that says hello
     @app.route("/hello")
-    def hello() -> str:
-        return "Hello, World!"
+    def hello() -> Any:
+        act.create_repo("helloworld")
+        return "it may have worked"
 
     from . import serve
 
