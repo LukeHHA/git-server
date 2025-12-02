@@ -12,3 +12,4 @@ act: actions.Actions = actions.Actions()
 @bp.route("/init_repo", methods=("GET", "POST"))
 def init_repo() -> Any:
     act.create_repo("helloWorld")
+    return "maybe it worked?"
