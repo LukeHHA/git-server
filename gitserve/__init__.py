@@ -4,7 +4,7 @@ from flask import Flask
 
 # internal modules
 from src.actions import Actions
-from src.helper import get_binary_version
+from src.helper import Serve_Helper
 
 
 def create_app(test_config: None = None) -> Flask:
@@ -33,7 +33,7 @@ def create_app(test_config: None = None) -> Flask:
     # a simple page that says hello
     @app.route("/")
     def index() -> Dict:
-        result: Text | None = get_binary_version("git", "-v")
+        result: Text | None = Serve_Helper.get_binary_version("git", "-v")
 
         if result is None:
             git_status: str = "git was not found on this system"
